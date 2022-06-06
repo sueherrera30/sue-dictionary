@@ -62,8 +62,15 @@ input {
 
 @media (max-width: 425px) {
     .mainContainer {
-       flex-direction: column;
        align-items: center;
+       margin: 20px 0px;
+    }
+    .imageContainer {
+        width: 40px;
+    }
+    input {
+        color: #2e3750;
+        min-width: 170px;
     }
   }
 

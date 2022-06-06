@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 import styles from './styles/savedWords.module.css';
 import hearts from '../assets/favs.png';
 const SavedWords = () => {
-    console.log('waiting for logic of saved things');
+    let navigate = useNavigate();
     return (
-        <div className={styles.savedContainer}>
+        <div className={styles.savedContainer} onClick={() => navigate('/favorites')}>
             <div className={styles.imageContainer}>
                 <img src={hearts} alt="main" className={styles.image}/>
             </div>

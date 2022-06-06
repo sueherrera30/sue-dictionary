@@ -7,12 +7,12 @@ const Input = () => {
             <div className={styles.imageContainer}>
                 <img src={book} alt="main" className={styles.image}/>
             </div>
-            <p>
+            <div>
                 <span className={styles.input}>
                     <input type="text" placeholder="write a word..." />
                     <span></span> 
                 </span>
-            </p>
+            </div>
         </div>
     )
 }
