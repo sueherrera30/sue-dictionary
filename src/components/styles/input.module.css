@@ -46,4 +46,24 @@ input {
 ::placeholder {
     color: #cbd0d5;
 }
+.mainContainer {
+    display: flex;
+}
+.imageContainer {
+    width: 60px;
+    height: auto;
+    margin: 10px;
+}
+.image {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 425px) {
+    .mainContainer {
+       flex-direction: column;
+       align-items: center;
+    }
+  }
 

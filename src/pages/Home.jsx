@@ -1,5 +1,7 @@
 import React from "react";
-import Input from '../components/Input'
+
+import Input from '../components/Input';
+import SavedWords from '../components/SavedWords';
 import styles from './styles/home.module.css';
 import main from '../assets/main.png'
 
@@ -14,6 +16,7 @@ const Home = () => {
                 <h1 className={styles.title}>MY DICTIONARY</h1>  
                 <p className={styles.subtitle}>Find meanings and save for quick reference</p>
                 <Input />
+                <SavedWords />
             </div>
         </section>
     )

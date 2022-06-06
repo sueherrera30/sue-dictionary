@@ -11,11 +11,12 @@
     display: flex;
     align-items:center;
     justify-content: center;
-    width: calc(100% - 40px);
-    height: calc(100% - 40px);
-    border-radius: 40px;
     flex-direction: column;
-    margin: 50px;
+    width: calc(100% - 25px);
+    height: calc(100% - 25px);
+    border-radius: 25px;
+    flex-direction: column;
+    margin: 20px 0px;
     background: #f1eff0;
     background: linear-gradient(0deg, rgba(238,203,209,0.4640449929971989) 33%, rgba(130,174,182,0.38001137955182074) 57%, rgba(255,255,255,0.0746892507002801) 78%, rgba(255,255,255,0.04667804621848737) 88%, rgba(255,255,255,0.4276304271708683) 100%);
     box-shadow: 2px 1px 17px 8px rgba(135,117,117,0.52);
@@ -23,7 +24,7 @@
 -moz-box-shadow: 2px 1px 17px 8px rgba(135,117,117,0.52);
 }
 .imageContainer {
-    width: 350px;
+    width: 300px;
     height: auto;
 }
 .image {
