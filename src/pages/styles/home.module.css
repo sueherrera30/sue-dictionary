@@ -27,7 +27,30 @@ background: linear-gradient(0deg, rgba(238,203,209,0.4640449929971989) 33%, rgba
 .imageContainer {
     width: 300px;
     height: auto;
+    position: relative;
 }
+.floatingImage {
+    width: 30px;
+    position: relative;
+    height: auto;
+    transform: translatey(0px);
+	animation: float 6s ease-in-out infinite;
+}
+.microscopy {
+    top: -190px;
+    left: 210px;
+    transform: rotate(35deg);
+}
+.world {
+    top: -280px;
+    left: 150px;
+}
+.school {
+    width: 60px;
+    top: -200px;
+    right: 5px;
+}
+
 .image {
     object-fit: contain;
     width: 100%;
@@ -56,10 +79,45 @@ background: linear-gradient(0deg, rgba(238,203,209,0.4640449929971989) 33%, rgba
     .subtitle {
         font-size: 14px;
     }
+    .microscopy {
+        top: -190px;
+        left: 140px;
+    }
+    .world {
+        top: -300px;
+        left: 120px;
+    }
   }
 
   @media (max-width: 320px) {
     .title {
         font-size: 24px;
     }
+    .microscopy {
+        width: 30px;
+        top: -190px;
+        left: 150px;
+    }
+    .world {
+        width: 25px;
+        top: -290px;
+        left: 50px;
+    }
+    .school {
+        width: 40px;
+        top: -200px;
+        right: 20px;
+    }
   }
+
+  @keyframes float {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-20px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
+}

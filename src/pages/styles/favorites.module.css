@@ -1,6 +1,3 @@
-.container {
-    justify-content: flex-start;
-}
 .header {
     width: 100%;
     display: flex;
@@ -16,6 +13,19 @@
     margin: 40px 60px;
     height: auto;
     width: 400px;
+    display: flex;
+    position: relative;
+}
+@keyframes float {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-20px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
 }
 .image {
     object-fit: contain;
@@ -28,6 +38,19 @@
     cursor: pointer;
     align-self: start;
     padding: 24px;
+    position: absolute;
+    top: 20px;
+}
+.hearts {
+    width: 120px;
+    height: auto;
+    position: relative;
+    right: 95px;
+    top: -80px;
+    transform: translatey(0px);
+	animation: float 4s ease-in-out infinite;
+    right: 150px;
+    top: -120px;
 }
 .wordsContainer {
     width: calc(100% - 20px);
@@ -72,6 +95,11 @@
         width: calc(100% /3);
         height: 60px;
     }
+    .hearts {
+        width: 100px;
+        right: 150px;
+        top: -120px;
+    }
   }
   @media (max-width: 425px) {
     .header {
@@ -88,5 +116,10 @@
     .word {
         font-size: 14px;
         width: calc(100% - 50px);
+    }
+    .hearts {
+        width: 70px;
+        right: 95px;
+        top: -80px;
     }
   }
