@@ -1,0 +1,63 @@
+.icons {
+    color: #ce9fa6;
+    font-size: 2.2rem;
+    cursor: pointer;
+}
+
+.container {
+    justify-content: unset;
+}
+.wordContainer {
+    background: rgb(185,202,207);
+    background: linear-gradient(168deg, rgba(185,202,207,1) 55%, rgba(206,159,166,1) 98%);
+    border-radius: 20px;
+    width: calc(100% - 200px);
+    height: 300px;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.iconsContainer {
+    display: flex;
+    width: calc(100% - 200px);
+    justify-content: space-between;
+    align-items: center;
+    margin: 28px 15px 0px 15px;
+}
+
+.wordTitle {
+    font-size: 36px;
+    font-weight: 700;
+    font-family: 'Quicksand';
+    color: #f1eff0;
+    text-transform: uppercase;
+    margin-left: 36px;
+}
+
+.soundIcon {
+    margin-right: 26px;
+    background: #82aeb6;
+    padding: 4px;
+    border-radius: 6px;
+    color: #f1eff0;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+@media (max-width: 425px) {
+    .wordTitle {
+        font-size: 18px;
+        letter-spacing: normal;
+    }
+    .wordContainer {
+        width: calc(100% - 40px);
+        height: 200px;
+    }
+    .icons {
+        font-size: 1.5rem;
+    }
+    .iconsContainer {
+        width: calc(100% - 50px);
+    }
+  }
