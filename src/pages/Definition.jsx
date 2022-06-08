@@ -4,7 +4,7 @@ import { BsBookmarkHeart as BookmarkHeart } from "react-icons/bs";
 import { MdOutlineArrowBack as Back } from "react-icons/md";
 import { GiSpeaker as Speaker } from "react-icons/gi";
 
-
+import DefinitionBox from '../components/DefinitionBox';
 import sharedStyles from './styles/home.module.css';
 import styles from './styles/definition.module.css';
 
@@ -21,6 +21,10 @@ const Definition = () => {
                 <div className={styles.wordContainer}>
                     <p className={styles.wordTitle}>{word}</p>
                     <Speaker className={`${styles.icons} ${styles.soundIcon}`} />
+                </div>
+                <div className={styles.definitionsContainer}>
+                    <DefinitionBox content="hola aqui una prueba detodo lo que recibia" />
+                    <hr className={styles.divider} />
                 </div>
             </div>
         </section>

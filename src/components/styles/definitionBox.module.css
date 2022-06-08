@@ -1,0 +1,25 @@
+.mainContainer {
+    border-radius: 4px;
+    width: calc(100% - 200px);
+    min-height: 200px;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    background: #f1eff0;
+}
+.content {
+    font-family: 'Quicksand';
+    margin: 16px;
+    color: #62645c;
+}
+@media (max-width: 768px) {
+    .mainContainer {
+        width: calc(100% - 40px);
+        min-height: 150px;
+    }
+    .content {
+        font-size: 14px;
+    }
+  }
