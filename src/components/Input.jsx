@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import styles from './styles/input.module.css';
 import book from '../assets/book.png';
-const Input = ({ wordProp }) => {
+const Input = ({}) => {
     const [word, setWord] = useState('');
     const[message, setMessage] = useState({
         state: false,
@@ -14,7 +14,6 @@ const Input = ({ wordProp }) => {
         event.preventDefault();
         const { value } = event.target;
         setWord(value);
-        wordProp(value)
     };
     const handleSearch = (event) => {
         if (event.key === 'Enter')  {

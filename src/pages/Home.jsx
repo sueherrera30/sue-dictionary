@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Input from '../components/Input';
 import SavedWords from '../components/SavedWords';
@@ -9,8 +9,6 @@ import microscopy from '../assets/microscopy.png';
 import world from '../assets/world.png';
 
 const Home = () => {
-    const [word, setWord] = useState();
-    console.log("hola home", word);
     return (
         <section className={styles.mainContainer}>
             <div className={styles.container}>
@@ -22,7 +20,7 @@ const Home = () => {
                 </div>
                 <h1 className={styles.title}>MY DICTIONARY</h1>  
                 <p className={styles.subtitle}>Find meanings and save for quick reference</p>
-                <Input wordProp={setWord} />
+                <Input />
                 <SavedWords />
             </div>
         </section>

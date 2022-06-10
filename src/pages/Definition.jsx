@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
+import { Tooltip, IconButton, CircularProgress } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
+
 import { BsBookmarkHeart as BookmarkHeart } from "react-icons/bs";
 import { MdOutlineArrowBack as Back } from "react-icons/md";
 import { GiSpeaker as Speaker } from "react-icons/gi";
@@ -11,24 +15,87 @@ import styles from './styles/definition.module.css';
 const Definition = () => {
     const { word } = useParams();
     let navigate = useNavigate();
+    const [favorites, setfavorites] = useState([]);
+    const [data, setData] = useState();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        setLoading(true);
+        const handleFetch = async () => {
+            try {
+               const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+               const result =  await response.json();
+               setData(result);
+               setLoading(false);
+               console.log('data:', data);
+            } catch(error) {
+                setError(error);
+                console.log('error:', error);
+            }
+        }
+        handleFetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const handleAddFavorites = () => {
+        if(favorites.length === 0) setfavorites([word])
+        else setfavorites([...favorites, word]);
+    }
+    const removeFavorites = () => {
+        setfavorites([])
+    }
+    useEffect(() => {
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    }, [favorites]);
+
+
     return (
         <section className={sharedStyles.mainContainer}>
             <div className={`${sharedStyles.container} ${styles.container}`}>
-                <div className={styles.iconsContainer}>
-                    <Back  className={styles.icons} onClick={() => navigate('/')} />
-                    <BookmarkHeart className={styles.icons} onClick={() => navigate('/favorites')}/>
-                </div>
-                <div className={styles.wordContainer}>
-                    <p className={styles.wordTitle}>{word}</p>
-                    <Speaker className={`${styles.icons} ${styles.soundIcon}`} />
-                </div>
-                <div className={styles.definitionsContainer}>
-                    <DefinitionBox content="hola aqui una prueba detodo lo que recibia" />
-                    <hr className={styles.divider} />
-                </div>
+                {
+                        loading
+                            ? <div className={styles.loadingContainer}><CircularProgress className={styles.loading} color="secondary" /></div>
+                            :  data ? 
+                             <>
+                             <div className={styles.iconsContainer}>
+                                    <Back  className={styles.icons} onClick={() => navigate('/')} />
+                                    <div className={styles.favsIcons}>
+                                        {
+                                        favorites.includes(word)
+                                        ? <IconButton onClick={removeFavorites}> <DoneOutlineIcon className={styles.stick} /></IconButton>
+                                        : <Tooltip title="add to favs" arrow  enterTouchDelay={0}>
+                                            <IconButton onClick={handleAddFavorites}> <AddIcon className={styles.add}  /></IconButton>
+                                            </Tooltip>
+                                        }
+                                        <Tooltip title="Go to your favourites" arrow  enterTouchDelay={0}>
+                                            <div><BookmarkHeart className={styles.icons} onClick={() => navigate('/favorites')}/></div>
+                                        </Tooltip>
+                                    </div>
+                                </div>
+                                <div className={styles.wordContainer}>
+                                    <div>
+                                    <p className={styles.wordTitle}>{word}</p>
+                                    <p className={styles.phonetic}>AQUI FHONETIC</p>
+                                    </div>
+                                    <Speaker className={`${styles.icons} ${styles.soundIcon}`} />
+                                </div>
+                                <div className={styles.definitionsContainer}>
+                                <DefinitionBox
+                                    definition="example of definition"
+                                    examples="here example"
+                                    partOfSpeech="noun"
+                                    />
+                                <hr className={styles.divider} />
+                                    
+                                </div>
+                             </>
+                            : <p>{error}</p>
+                }
             </div>
         </section>
     )
 };
 
 export default Definition;
+

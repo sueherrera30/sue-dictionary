@@ -62,7 +62,6 @@
     align-items: center;
     overflow: scroll;
 }
-
 .word {
     width: calc(100% /4);
     margin: 8px;
