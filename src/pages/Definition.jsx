@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import { Tooltip, IconButton, CircularProgress } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
@@ -16,19 +16,19 @@ const Definition = () => {
     const { word } = useParams();
     let navigate = useNavigate();
     const [favorites, setfavorites] = useState([]);
-    const [data, setData] = useState();
+    const [definitions, setDefinitions] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    console.log('data outside:', definitions);
     useEffect(() => {
         setLoading(true);
         const handleFetch = async () => {
             try {
                const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
                const result =  await response.json();
-               setData(result);
+               setDefinitions(result);
                setLoading(false);
-               console.log('data:', data);
             } catch(error) {
                 setError(error);
                 console.log('error:', error);
@@ -56,7 +56,7 @@ const Definition = () => {
                 {
                         loading
                             ? <div className={styles.loadingContainer}><CircularProgress className={styles.loading} color="secondary" /></div>
-                            :  data ? 
+                            :  definitions ? 
                              <>
                              <div className={styles.iconsContainer}>
                                     <Back  className={styles.icons} onClick={() => navigate('/')} />
@@ -81,13 +81,22 @@ const Definition = () => {
                                     <Speaker className={`${styles.icons} ${styles.soundIcon}`} />
                                 </div>
                                 <div className={styles.definitionsContainer}>
-                                <DefinitionBox
-                                    definition="example of definition"
-                                    examples="here example"
-                                    partOfSpeech="noun"
-                                    />
-                                <hr className={styles.divider} />
-                                    
+                                    {
+                                        definitions.map((definition, idx) => 
+                                            <Fragment key={idx}>
+                                                {
+                                                    definition.meanings.map((meaning, idx) =>
+                                                        <DefinitionBox
+                                                            key={idx}
+                                                            meanings={meaning.definitions}
+                                                            partOfSpeech={meaning.partOfSpeech}
+                                                        />
+                                                    )
+                                                }
+                                                <hr className={styles.divider} />
+                                            </Fragment>
+                                        )
+                                    }            
                                 </div>
                              </>
                             : <p>{error}</p>

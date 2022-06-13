@@ -6,14 +6,51 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
     background: #f1eff0;
-}
-.content {
     font-family: 'Quicksand';
-    margin: 16px;
+    margin: 12px;
     color: #62645c;
+    font-family: 'Quicksand';
+}
+.definitionContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+.definitionContainer div {
+    margin: 8px;
+    text-align: center;
+}
+
+.multipleDefinitionContainer div {
+    margin: 4px;
+    width: calc(100%/3);
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+.speech {
+    font-size: 16px;
+    color: #ce9fa6;
+    font-weight: 600;
+}
+.definition {
+    font-size: 12px;
+    color: #62645c;
+}
+.exampleTitle {
+    font-size: 14px;
+    color: #ce9fa6;
+    font-weight: 600;
+}
+.example {
+    font-size: 12px;
+    color: #82aeb6;
+    font-style: italic;
 }
 @media (max-width: 768px) {
     .mainContainer {
@@ -23,4 +60,8 @@
     .content {
         font-size: 14px;
     }
-  }
+    .multipleDefinitionContainer div {
+        margin: 12px;
+        width:100%;
+    }
+}
