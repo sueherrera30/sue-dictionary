@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import styles from './styles/input.module.css';
 import book from '../assets/book.png';
-const Input = ({}) => {
+const Input = () => {
     const [word, setWord] = useState('');
     const[message, setMessage] = useState({
         state: false,
