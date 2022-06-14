@@ -3,7 +3,21 @@
     font-size: 2.2rem;
     cursor: pointer;
 }
-
+.error {
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: 'Quicksand';
+}
+.error h1 {
+    color: #b24c8e;
+    letter-spacing: 1px;
+    text-align: center;
+}
+.error p {
+    color: #82aeb6;
+    font-size: 16px;
+}
 .container {
     justify-content: unset;
 }
@@ -101,6 +115,16 @@
     border-color: rgba(0, 0, 0, 0.12);
     display: block;
 }
+.sad {
+    width: 250px;
+    height: auto;
+    animation: beat 4s infinite alternate;
+	transform-origin: center;
+}
+
+@keyframes beat{
+	to { transform: scale(1); }
+}
 
 @media (max-width: 768px) {
     .definitionsContainer {
@@ -123,12 +147,17 @@
     .divider {
         width: calc(100% - 40px);
     }
-    .phonetic {
-        font-size: 16px;
-    }
   }
+
   @media (max-width: 375px) {
     .definitionsContainer {
         width: calc(100% - 10px);
+    }
+  }
+  @media (max-width: 425px) {
+    .error p {
+       padding: 16px;
+       font-weight: 600;
+       text-align: center;
     }
   }

@@ -3,12 +3,13 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Tooltip, IconButton, CircularProgress } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
-import axios from 'axios';
+import axios from "axios";
 
 import { BsBookmarkHeart as BookmarkHeart } from "react-icons/bs";
 import { MdOutlineArrowBack as Back } from "react-icons/md";
 import { GiSpeaker as Speaker } from "react-icons/gi";
 
+import Sad from '../assets/sad.png'
 import DefinitionBox from '../components/DefinitionBox';
 import sharedStyles from './styles/home.module.css';
 import styles from './styles/definition.module.css';
@@ -20,21 +21,26 @@ const Definition = () => {
     const [definitions, setDefinitions] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [audio, setAudio] = useState(null);
     
 
     useEffect(() => {
         setLoading(true);
-        const handleFetch = async () => {
-            try {
-                const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
-                const result =  await response.json();
-                setDefinitions(result);
-                setLoading(false);
-            } catch (err) {
-                setError(err)
-                console.log(error);
-                console.log(err);
-            }
+        const handleFetch = () => {
+            axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+            .then((response) => {
+                setDefinitions(response.data);
+                const phonetics = response.data[0].phonetics;
+                if(!phonetics.length) return;
+                const audioUrl = phonetics[0].audio.replace('//ss1', 'https://');
+                if(audioUrl === '' && phonetics[1].audio !== '') setAudio(new Audio(phonetics[1].audio.replace('//ss1', 'https://')))
+                else setAudio(new Audio(audioUrl))
+            })
+            .catch((error) => {
+                const { data } = error.response
+                setError(data)
+            })
+            setLoading(false);
         }
         handleFetch();
     }, []);
@@ -49,9 +55,16 @@ const Definition = () => {
         localStorage.setItem('favorites', JSON.stringify(favorites));
     }, [favorites]);
 
-    if(error !== null) return <p>word no found, try again</p>
     if(loading) return <div className={styles.loadingContainer}><CircularProgress className={styles.loading} color="secondary" /></div>
-
+    if(error !== null) return <div className={sharedStyles.mainContainer}>
+        <div className={`${sharedStyles.container} ${styles.error}`}>
+            <h1>{error.title}</h1>
+            <p>{error.message}</p>
+            <p>{error.resolution}</p>
+            <Back  className={styles.icons} onClick={() => navigate('/')} />
+            <img alt="sad cheems" src={Sad} className={styles.sad}/>
+        </div>
+    </div>
     return (
         <section className={sharedStyles.mainContainer}>
             <div className={`${sharedStyles.container} ${styles.container}`}>
@@ -77,9 +90,8 @@ const Definition = () => {
                     <div className={styles.wordContainer}>
                         <div>
                         <p className={styles.wordTitle}>{word}</p>
-                        <p className={styles.phonetic}>AQUI FHONETIC</p>
                         </div>
-                        <Speaker className={`${styles.icons} ${styles.soundIcon}`} />
+                        {audio ? <Speaker onClick={() => audio.play()} className={`${styles.icons} ${styles.soundIcon}`} /> : null}
                     </div>
                     <div className={styles.definitionsContainer}>
                         {
@@ -91,6 +103,7 @@ const Definition = () => {
                                                 key={idx}
                                                 meanings={meaning.definitions}
                                                 partOfSpeech={meaning.partOfSpeech}
+                                                phonetic={definition.phonetic}
                                             />
                                         )
                                     }

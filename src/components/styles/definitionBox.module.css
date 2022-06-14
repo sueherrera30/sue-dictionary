@@ -24,6 +24,10 @@
     margin: 8px;
     text-align: center;
 }
+.phonetic {
+    color:#b24c8e;
+    font-size: 14px;
+}
 
 .multipleDefinitionContainer div {
     margin: 4px;

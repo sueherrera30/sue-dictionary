@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import styles from './styles/definitionBox.module.css';
 
-const DefinitionBox = ({ meanings, partOfSpeech }) => (
+const DefinitionBox = ({ meanings, partOfSpeech, phonetic }) => (
     <>
         <section className={styles.mainContainer}>
         <p className={styles.speech}>{partOfSpeech}</p>
@@ -9,11 +9,12 @@ const DefinitionBox = ({ meanings, partOfSpeech }) => (
             {
                 meanings.map((definition,idx) =>
                     <div key={idx}>
+                        { phonetic ? <p className={styles.phonetic}>{phonetic}</p> : null }
                         <p className={styles.definition}>{`${idx + 1}.- ${definition.definition}`}</p>
                         { definition.example ?
                             <>
                                 <span className={styles.exampleTitle}>example: </span>
-                                <span className={styles.example}>{definition.example}</span> 
+                                <span className={styles.example}>{definition.example}</span>
                             </> 
                             : null
                         }
