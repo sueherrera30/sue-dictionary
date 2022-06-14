@@ -31,10 +31,10 @@ const Definition = () => {
             .then((response) => {
                 setDefinitions(response.data);
                 const phonetics = response.data[0].phonetics;
-                if(!phonetics.length) return;
-                const audioUrl = phonetics[0].audio.replace('//ss1', 'https://');
-                if(audioUrl === '' && phonetics[1].audio !== '') setAudio(new Audio(phonetics[1].audio.replace('//ss1', 'https://')))
-                else setAudio(new Audio(audioUrl))
+                const phoneticsWithAudio = phonetics.filter(item => item.audio !== '' && item);
+                if(!phoneticsWithAudio.length) return;
+                const audioUrl = phoneticsWithAudio[0].audio.replace('//ss1', 'https://');
+                setAudio(new Audio(audioUrl))
             })
             .catch((error) => {
                 const { data } = error.response
