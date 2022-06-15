@@ -1,5 +1,3 @@
-import React from "react";
-
 import Input from '../components/Input';
 import SavedWords from '../components/SavedWords';
 import styles from './styles/home.module.css';

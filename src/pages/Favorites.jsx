@@ -6,8 +6,12 @@ import hearts from '../assets/favs.png';
 import thinking from '../assets/thinking.png'
 import sharedStyles from './styles/home.module.css';
 import styles from './styles/favorites.module.css';
-const Favorites = () => {
+const Favorites = ({ favorites }) => {
     let navigate = useNavigate();
+
+    const goToDefinition = (word) => {
+        navigate(`/definition/${word}`)
+    };
     return (
         <section className={sharedStyles.mainContainer}>
             <div className={`${sharedStyles.container} ${styles.container}`}>
@@ -20,7 +24,11 @@ const Favorites = () => {
                     <h2 className={styles.title}>MY FAVORITES WORDS</h2>
                 </header>
                 <div className={styles.wordsContainer} >
-                    <div className={styles.word} >fvoritos</div>
+                    {
+                        favorites.map((favWord, idx) => (
+                            <div key={`${favWord}-${idx}`} onClick={() => goToDefinition(favWord)} className={styles.word} >{favWord}</div>
+                        ))
+                    }
                 </div>
             </div>
         </section>
