@@ -22,7 +22,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/favorites/" element={<Favorites favorites={favorites} />} />
+          <Route path="/favorites/" element={<Favorites favorites={favorites} setFavorites={setFavorites} />} />
           <Route path="/definition/:word" element={<Definition setFavorites={setFavorites} favorites={favorites} />} />
         </Routes>
       </BrowserRouter>

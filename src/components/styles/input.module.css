@@ -49,6 +49,12 @@ input {
 .mainContainer {
     display: flex;
     align-items: center;
+    flex-direction: column;
+}
+.inputContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .imageContainer {
     width: 60px;

@@ -16,6 +16,10 @@
     display: flex;
     position: relative;
 }
+.DeleteIcon {
+    color:#ce9fa6;
+    font-size: 16px;
+}
 @keyframes float {
 	0% {
 		transform: translatey(0px);
@@ -57,7 +61,7 @@
     height: auto;
     margin: 12px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
     align-items: center;
     overflow: scroll;
@@ -73,8 +77,16 @@
     align-items:center;
     justify-content: center;
     cursor: pointer;
+    font-family: 'Quicksand';
+    color: #b24c8e;
+    border-radius: 50px;
 }
-
+.message {
+    font-family: 'Quicksand';
+    color: #b24c8e;
+    text-align: center;
+    font-size: 24px;
+}
 @media (max-width: 768px) {
     .header {
         flex-direction: column;
@@ -112,13 +124,25 @@
     .title {
         font-size: 18px;
     }
-    .word {
-        font-size: 14px;
+    .wordsContainer {
         width: calc(100% - 50px);
+        justify-content: center;
+    }
+    .word {
+        font-size: 15px;
+        width: calc(100% - 50px);
+        letter-spacing: 1px;
     }
     .hearts {
-        width: 70px;
+        width: 100px;
+        height: 100px;
         right: 95px;
-        top: -80px;
+        top: -50px;
+    }
+    .DeleteIcon {
+        font-size: 14px !important;
+    }
+    .message {
+        font-size: 18px;
     }
   }

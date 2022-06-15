@@ -25,7 +25,7 @@ const Input = () => {
             else if(word.split(' ').length > 1) setMessage(() => { 
                 return {
                 state: true,
-                content: 'please add just 1 word'
+                content: 'please add just 1 word or delete empty spaces'
             }})
             else {
                 navigate(`/definition/${word}`)  
@@ -42,22 +42,24 @@ const Input = () => {
 
     return (
         <div className={styles.mainContainer}>
-            <div className={styles.imageContainer}>
-                <img src={book} alt="main" className={styles.image}/>
+            <div className={styles.inputContainer}>
+                <div className={styles.imageContainer}>
+                    <img src={book} alt="main" className={styles.image}/>
+                </div>
+                <div>
+                    <span className={styles.input}>
+                        <input
+                            value={word}
+                            onChange={saveValue}
+                            onKeyDown={handleSearch}
+                            type="text"
+                            placeholder="write a word..."
+                        />
+                        <span></span>
+                    </span>  
+                </div>
             </div>
-            <div>
-                <span className={styles.input}>
-                    <input
-                        value={word}
-                        onChange={saveValue}
-                        onKeyDown={handleSearch}
-                        type="text"
-                        placeholder="write a word..."
-                    />
-                    <span></span>
-                </span>
-                {message.state && <p className={styles.message}>{message.content}</p>}
-            </div>
+            {message.state && <p className={styles.message}>{message.content}</p>}
         </div>
     )
 }
