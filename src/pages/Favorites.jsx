@@ -14,15 +14,17 @@ const Favorites = ({ favorites, setFavorites }) => {
     const goToDefinition = (word) => {
         navigate(`/definition/${word}`)
     };
+
     const deleteWord = (word) => {
         const filteredFavs = favorites.filter(item => item !== word);
-        setFavorites(filteredFavs)
+        setFavorites(filteredFavs);
     }
+
     return (
         <section className={sharedStyles.mainContainer}>
             <div className={`${sharedStyles.container} ${styles.container}`}>
                 <header className={styles.header}>
-                    <Back  className={styles.icons} onClick={() => navigate('/')} />
+                    <Back data-testid="back-button" className={styles.icons} onClick={() => navigate('/')} />
                     <div className={styles.imageContainer} >
                         <img alt="decoration" src={thinking} className={styles.image} />
                         <img src={hearts} alt="hearts" className={styles.hearts}/>
@@ -34,10 +36,10 @@ const Favorites = ({ favorites, setFavorites }) => {
                         favorites.length !== 0 ?
                         favorites.map((favWord, idx) => (
                             <Fragment key={`${favWord}-${idx}`}>
-                                <div onClick={() => goToDefinition(favWord)} className={styles.word}>
+                                <div data-testid="word-saved" onClick={() => goToDefinition(favWord)} className={styles.word}>
                                     {favWord}
                                 </div>
-                                 <IconButton onClick={() => deleteWord(favWord)}><ClearIcon className={styles.DeleteIcon} /></IconButton>
+                                 <IconButton data-testid="delete-button" onClick={() => deleteWord(favWord)}><ClearIcon className={styles.DeleteIcon} /></IconButton>
                             </Fragment>
                         )) : <p  className={styles.message}>there are no favorites words saved, go ahead!</p>
                     }

@@ -4,14 +4,14 @@ import Home from './pages/Home';
 import Favorites from './pages/Favorites';
 import Definition from './pages/Definition';
 
+export const savedFavourites = () => {
+  const savedItem = localStorage.getItem("favorites");
+ const parsedItem = JSON.parse(savedItem);
+ return parsedItem || "";
+ }
 
 function App() {
-  // const [favorites, setFavorites] = useState(localStorage.getItem('favorites') || []);
-  const [favorites, setFavorites] = useState ( () => {
-    const savedItem = localStorage.getItem("favorites");
-   const parsedItem = JSON.parse(savedItem);
-   return parsedItem || "";
-   });
+  const [favorites, setFavorites] = useState(savedFavourites);
 
   useEffect(() => {
     localStorage.setItem('favorites', JSON.stringify(favorites));
