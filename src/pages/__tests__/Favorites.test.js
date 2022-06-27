@@ -8,14 +8,7 @@ const fovarites = ['test', 'word','love'];
 const setFavorites = jest.fn();
 const ui = userEvent.setup()
 const navigate = jest.fn()
-
-// const mockSetState = jest.fn();
-// jest.mock('react', () => ({
-//   useState: initial => [initial, mockSetState]
-// }));
-
 const deleteWord = jest.fn(() => Favorites);
-
 
 beforeEach(() => {
   jest.spyOn(router, 'useNavigate').mockImplementation(() => navigate)

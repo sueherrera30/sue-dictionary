@@ -39,7 +39,7 @@ const Definition = ({ favorites, setFavorites }) => {
                     ? null
                     : <>
                     <div className={styles.iconsContainer}>
-                        <Back  className={styles.icons} onClick={() => navigate('/')} />
+                        <Back data-testid="back-button" className={styles.icons} onClick={() => navigate('/')} />
                         <div className={styles.favsIcons}>
                             {
                                 favorites && favorites.includes(word)
@@ -49,13 +49,13 @@ const Definition = ({ favorites, setFavorites }) => {
                                 </Tooltip>
                             }
                             <Tooltip title="Go to your favourites" arrow  enterTouchDelay={0}>
-                                <div><BookmarkHeart className={styles.icons} onClick={() => navigate('/favorites')}/></div>
+                                <div><BookmarkHeart  data-testid="favorites-button"  className={styles.icons} onClick={() => navigate('/favorites')}/></div>
                             </Tooltip>
                         </div>
                     </div>
                     <div className={styles.wordContainer}>
                         <div>
-                        <p className={styles.wordTitle}>{word}</p>
+                        <p className={styles.wordTitle} data-testid="word">{word}</p>
                         </div>
                         {audio ? <Speaker onClick={() => audio.play()} className={`${styles.icons} ${styles.soundIcon}`} /> : null}
                     </div>
