@@ -2,13 +2,14 @@ import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import * as router from 'react-router'
 import Favorites from '../Favorites';
-import userEvent from '@testing-library/user-event'
 
 const fovarites = ['test', 'word','love'];
 const setFavorites = jest.fn();
-const ui = userEvent.setup()
 const navigate = jest.fn()
+
+
 const deleteWord = jest.fn(() => Favorites);
+
 
 beforeEach(() => {
   jest.spyOn(router, 'useNavigate').mockImplementation(() => navigate)
@@ -31,7 +32,7 @@ test('Shows list of words saved', () => {
 test('Goes to definition page', async () => {
   render(<MemoryRouter><Favorites favorites={fovarites} /></MemoryRouter>,);
   const word = screen.queryAllByTestId('word-saved')[0].textContent;
-  await ui.click(screen.queryAllByTestId('word-saved')[0])
+  await fireEvent.click(screen.queryAllByTestId('word-saved')[0]);
   expect(navigate).toHaveBeenCalledWith(`/definition/${word}`)
 });
 

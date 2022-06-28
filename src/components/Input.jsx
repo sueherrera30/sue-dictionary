@@ -14,6 +14,7 @@ const Input = () => {
         event.preventDefault();
         const { value } = event.target;
         setWord(value);
+        localStorage.setItem('word', JSON.stringify(value))
     };
     const handleSearch = (event) => {
         if (event.key === 'Enter')  {

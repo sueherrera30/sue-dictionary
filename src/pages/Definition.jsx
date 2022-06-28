@@ -16,6 +16,9 @@ import styles from './styles/definition.module.css';
 
 const Definition = ({ favorites, setFavorites }) => {
     const { word } = useParams();
+    // const parsedItem = localStorage.getItem("favorites")
+    // const word = JSON.parse(parsedItem);
+
     let navigate = useNavigate();
     const { definitions, loading, error, audio } = useFetch(word);
 
@@ -27,10 +30,11 @@ const Definition = ({ favorites, setFavorites }) => {
         const filteredFavs = favorites.filter(item => item !== word);
         setFavorites(filteredFavs)
     } 
-
     if(loading) return <div className={styles.loadingContainer}><CircularProgress className={styles.loading} color="secondary" /></div>
     if(error !== null) return <ErrorComponent error={error}/>
 
+    console.log('word in component', word);
+    debugger;
     return (
         <section className={sharedStyles.mainContainer}>
             <div className={`${sharedStyles.container} ${styles.container}`}>
