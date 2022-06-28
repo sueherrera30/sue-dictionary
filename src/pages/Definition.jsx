@@ -47,9 +47,9 @@ const Definition = ({ favorites, setFavorites }) => {
                         <div className={styles.favsIcons}>
                             {
                                 favorites && favorites.includes(word)
-                                ? <IconButton onClick={removeFavorites}> <DoneOutlineIcon className={styles.stick} /></IconButton>
+                                ? <IconButton data-testid="stick-icon" onClick={removeFavorites}> <DoneOutlineIcon className={styles.stick} /></IconButton>
                                 : <Tooltip title="add to favs" arrow  enterTouchDelay={0}>
-                                    <IconButton onClick={handleAddFavorites}> <AddIcon className={styles.add}  /></IconButton>
+                                    <IconButton  data-testid="add-icon"  onClick={handleAddFavorites}> <AddIcon className={styles.add}  /></IconButton>
                                 </Tooltip>
                             }
                             <Tooltip title="Go to your favourites" arrow  enterTouchDelay={0}>
