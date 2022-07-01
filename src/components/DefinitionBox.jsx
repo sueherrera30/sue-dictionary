@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import styles from './styles/definitionBox.module.css';
 
 const DefinitionBox = ({ meanings, partOfSpeech, phonetic }) => (

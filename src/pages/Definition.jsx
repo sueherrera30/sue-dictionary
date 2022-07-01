@@ -16,11 +16,9 @@ import styles from './styles/definition.module.css';
 
 const Definition = ({ favorites, setFavorites }) => {
     const { word } = useParams();
-
     let navigate = useNavigate();
     const { definitions, loading, error, audio } = useFetch(word);
 
-    console.log('error in definition component', error);
     const handleAddFavorites = () => {
         setFavorites(prevFavs => [...prevFavs, word])
         if(favorites.includes(word)) return;
@@ -29,7 +27,9 @@ const Definition = ({ favorites, setFavorites }) => {
         const filteredFavs = favorites.filter(item => item !== word);
         setFavorites(filteredFavs)
     } 
-    if(loading) return <div className={styles.loadingContainer}><CircularProgress className={styles.loading} color="secondary" /></div>
+    if(loading) return <section className={sharedStyles.mainContainer}>
+        <div data-testid="loading" className={styles.loadingContainer}><CircularProgress className={styles.loading} color="secondary" /></div>
+    </section> 
     if(error !== null) return <ErrorComponent error={error}/>
 
     return (
@@ -58,7 +58,7 @@ const Definition = ({ favorites, setFavorites }) => {
                         <div>
                         <p className={styles.wordTitle} data-testid="word">{word}</p>
                         </div>
-                        {audio ? <Speaker onClick={() => audio.play()} className={`${styles.icons} ${styles.soundIcon}`} /> : null}
+                        {audio ? <Speaker data-testid="speaker" onClick={() => audio.play()} className={`${styles.icons} ${styles.soundIcon}`} /> : null}
                     </div>
                     <div className={styles.definitionsContainer}>
                         {

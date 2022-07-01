@@ -5,7 +5,7 @@ import hearts from '../assets/favs.png';
 const SavedWords = () => {
     let navigate = useNavigate();
     return (
-        <div className={styles.savedContainer} onClick={() => navigate('/favorites')}>
+        <div data-testid="favorites-button" className={styles.savedContainer} onClick={() => navigate('/favorites')}>
             <div className={styles.imageContainer}>
                 <img src={hearts} alt="main" className={styles.image}/>
             </div>
